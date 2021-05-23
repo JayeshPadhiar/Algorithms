@@ -31,7 +31,7 @@ int main()
 	cin>>num;
 
 	int index = linearsearch(arr, size, num);
-	cout<<"Index: "<<index;
+	(index == -1)? cout<<"Not found"<<endl:cout<<"Found at index: "<<index;
 
 	return 0;
 }
