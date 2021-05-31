@@ -1,2 +1,2 @@
-# DataStructuresAlgorithms
-Practicing Data Structures and Algorithms
+# Data Structures & Algorithms
+Practicing Data Structures & Algorithms
