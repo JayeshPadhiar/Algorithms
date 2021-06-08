@@ -17,8 +17,6 @@ int main()
 	cout << "\nfront() : g1.front() = " << g1.front();
 
 	cout << "\nback() : g1.back() = " << g1.back();
-
-	// pointer to the first element
 	int* pos = g1.data();
 
 	cout << "\nThe first element is " << *pos;
