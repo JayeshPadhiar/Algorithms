@@ -30,6 +30,20 @@ void display(Node *node)
 	cout<<endl;
 }
 
+int search(Node *node, int num)
+{
+	int index = 0;
+	while(node)
+	{
+		if(node->data == num)
+			return index;
+
+		node = node->next;
+		index++;
+	}
+	return -1;
+}
+
 int main()
 {
 	Node *head = new Node(10);
