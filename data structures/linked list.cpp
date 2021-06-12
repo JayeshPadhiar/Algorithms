@@ -52,15 +52,22 @@ void push_front(Node **head, int num) // double pointer because head is not glob
 	*head = node;
 }
 
-void push_back(Node *head, int num)
+void push_back(Node **head, int num)
 {
 	Node *node = new Node(num);
+	Node *temp = *head;
 
-	while(head->next)
+	if(temp == NULL)
 	{
-		head = head->next;
+		*head = node;
+		return;
 	}
-	head->next = node;
+
+	while(temp->next)
+	{
+		temp = temp->next;
+	}
+	temp->next = node;
 }
 
 void push_after(Node *node, int num, int data)
@@ -79,9 +86,47 @@ void push_after(Node *node, int num, int data)
 	cout<<"Number not found\n";
 }
 
+void remove(Node **head, int num)
+{
+	Node *temp = *head;
+
+	if(temp->data == num)
+	{
+		*head = temp->next;
+		delete temp;
+		return;
+	}
+
+	while(temp)
+	{
+		if(temp->next->data == num)
+		{
+			temp->next = temp->next->next;
+			return;
+		}
+		temp = temp->next;
+	}
+}
 
 int main()
 {
 	Node *head = new Node(10);
+	push_back(&head, 50);
+	push_back(&head, 60);
+	push_back(&head, 40);
+	push_back(&head, 20);
+	push_back(&head, 50);
+	push_back(&head, 10);
+
+	remove(&head, 10);
+	remove(&head, 10);
+	remove(&head, 50);
+	remove(&head, 50);
+	remove(&head, 60);
+	remove(&head, 40);
+	remove(&head, 20);
+
+	push_front(&head, 50);
+
 	display(head);
 }
