@@ -96,6 +96,13 @@ void push_at(Node **head, int pos, int num)
 		return;
 	}
 
+	if(*head == NULL)
+	{
+		Node *new_node = new Node(num);
+		*head = new_node;
+		return;
+	}
+
 	Node *iter = *head;
 
 	for(int i=0; i<pos-1; i++)
@@ -145,19 +152,27 @@ void delete_list(Node **head)
 	}
 }
 
+int length(Node *head)
+{
+	int length = 0;
+
+	while(head)
+	{
+		head = head->next;
+		length++;
+	}
+	return length;
+}
+
 int main()
 {
 	Node *head = new Node(10);
-	push_back(&head, 20);
-	push_back(&head, 30);
-	push_back(&head, 40);
-	push_back(&head, 50);
-	push_back(&head, 60);
-	push_back(&head, 70);
-	push_back(&head, 80);
-	//remove(&head, 50);
 
-	push_at(&head, 5, 100);
+	remove(&head, 10);
+
+	push_front(&head, 100);
+
+	cout<<length(head)<<endl;
 
 	//delete_list(&head);
 
