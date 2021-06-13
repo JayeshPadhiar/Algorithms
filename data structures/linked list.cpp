@@ -26,7 +26,6 @@ void display(Node *node)
 		cout<<node->data<<" ";
 		node = node->next;
 	}
-
 	cout<<endl;
 }
 
@@ -101,32 +100,39 @@ void remove(Node **head, int num)
 	{
 		if(temp->next->data == num)
 		{
+			Node *del = temp->next;
 			temp->next = temp->next->next;
+			delete del;
 			return;
 		}
 		temp = temp->next;
 	}
 }
 
+void delete_list(Node **head)
+{
+	while(*head)
+	{
+		Node *node = *head;
+		*head = (*head)->next;
+		cout<<"Deleting "<<node->data<<endl;
+		delete node;
+	}
+}
+
 int main()
 {
 	Node *head = new Node(10);
+	push_back(&head, 20);
+	push_back(&head, 30);
+	push_back(&head, 40);
 	push_back(&head, 50);
 	push_back(&head, 60);
-	push_back(&head, 40);
-	push_back(&head, 20);
-	push_back(&head, 50);
-	push_back(&head, 10);
+	push_back(&head, 70);
+	push_back(&head, 80);
+	//remove(&head, 50);
 
-	remove(&head, 10);
-	remove(&head, 10);
-	remove(&head, 50);
-	remove(&head, 50);
-	remove(&head, 60);
-	remove(&head, 40);
-	remove(&head, 20);
-
-	push_front(&head, 50);
+	delete_list(&head);
 
 	display(head);
 }
