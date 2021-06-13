@@ -85,6 +85,32 @@ void push_after(Node *node, int num, int data)
 	cout<<"Number not found\n";
 }
 
+void push_at(Node **head, int pos, int num)
+{
+	if(pos == 0)
+	{
+		cout<<"first";
+		Node *new_node = new Node(num);
+		new_node->next = *head;
+		*head = new_node;
+		return;
+	}
+
+	Node *iter = *head;
+
+	for(int i=0; i<pos-1; i++)
+	{
+		if(iter->next)
+			iter = iter->next;
+	}
+
+	Node *new_node = new Node(num);
+
+	new_node->next = iter->next;
+	iter->next = new_node;
+
+}
+
 void remove(Node **head, int num)
 {
 	Node *temp = *head;
@@ -115,7 +141,6 @@ void delete_list(Node **head)
 	{
 		Node *node = *head;
 		*head = (*head)->next;
-		cout<<"Deleting "<<node->data<<endl;
 		delete node;
 	}
 }
@@ -132,7 +157,9 @@ int main()
 	push_back(&head, 80);
 	//remove(&head, 50);
 
-	delete_list(&head);
+	push_at(&head, 5, 100);
+
+	//delete_list(&head);
 
 	display(head);
 }
