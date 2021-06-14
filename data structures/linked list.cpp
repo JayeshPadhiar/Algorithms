@@ -173,6 +173,19 @@ void delete_list(Node **head)
 	}
 }
 
+int get(Node *head, int n)
+{
+	for(int i=0; i<n; i++)
+	{
+		if(head->next)
+			head = head->next;
+		else{
+			return -1;
+		}
+	}
+	return head->data;
+}
+
 int length(Node *head)
 {
 	int length = 0;
@@ -187,15 +200,14 @@ int length(Node *head)
 
 int main()
 {
-	Node *head = new Node(10);
-	push_back(&head, 7);
-    push_back(&head, 1);
+	Node *head = new Node(1);
+
+	push_back(&head, 2);
     push_back(&head, 3);
-    push_back(&head, 2);
-    push_back(&head, 8);
+    push_back(&head, 4);
+    push_back(&head, 5);
 
     display(head);
-	remove_at(&head, 100);
 
-	display(head);
+    cout<<get(head, 6)<<endl;
 }
