@@ -186,6 +186,23 @@ int get(Node *head, int n)
 	return head->data;
 }
 
+int get_while(Node *head, int n) //same get using while loop
+{
+	int index = 0;
+
+	while(head)
+	{
+		if(index == n)
+		{
+			return head->data;
+		}
+		head = head->next;
+		index++;
+	}
+
+	return -1;
+}
+
 int length(Node *head)
 {
 	int length = 0;
@@ -209,5 +226,5 @@ int main()
 
     display(head);
 
-    cout<<get(head, 6)<<endl;
+    cout<<get_while(head, 0)<<endl;
 }
