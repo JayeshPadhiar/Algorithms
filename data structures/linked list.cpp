@@ -104,7 +104,6 @@ void push_at(Node **head, int pos, int num)
 	}
 
 	Node *iter = *head;
-
 	for(int i=0; i<pos-1; i++)
 	{
 		if(iter->next)
@@ -142,6 +141,28 @@ void remove(Node **head, int num)
 	}
 }
 
+void remove_at(Node **head, int pos)
+{
+	Node *node = *head;
+	if(pos == 0 || (pos != 0 && !((*head)->next)))
+	{
+		*head = node->next;
+		delete(node);
+		return;
+	}
+
+	for(int i=1; i<pos; i++)
+	{
+		if(node->next->next)
+			node = node->next;
+	}
+
+	Node *temp = node->next;
+	node->next = node->next->next;
+	delete temp;
+
+}
+
 void delete_list(Node **head)
 {
 	while(*head)
@@ -167,14 +188,14 @@ int length(Node *head)
 int main()
 {
 	Node *head = new Node(10);
+	push_back(&head, 7);
+    push_back(&head, 1);
+    push_back(&head, 3);
+    push_back(&head, 2);
+    push_back(&head, 8);
 
-	remove(&head, 10);
-
-	push_front(&head, 100);
-
-	cout<<length(head)<<endl;
-
-	//delete_list(&head);
+    display(head);
+	remove_at(&head, 100);
 
 	display(head);
 }
