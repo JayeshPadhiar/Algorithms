@@ -203,6 +203,13 @@ int get_while(Node *head, int n) //same get using while loop
 	return -1;
 }
 
+void swap_list(Node **a, Node **b)
+{
+	Node *temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
 int length(Node *head)
 {
 	int length = 0;
@@ -218,13 +225,25 @@ int length(Node *head)
 int main()
 {
 	Node *head = new Node(1);
-
 	push_back(&head, 2);
     push_back(&head, 3);
     push_back(&head, 4);
     push_back(&head, 5);
 
-    display(head);
+    Node *hhhh = new Node(5);
+	push_back(&hhhh, 6);
+    push_back(&hhhh, 7);
+    push_back(&hhhh, 8);
+    push_back(&hhhh, 9);
 
-    cout<<get_while(head, 0)<<endl;
+    display(head);
+    display(hhhh);
+
+    swap_list(&head, &hhhh);
+
+    display(head);
+    display(hhhh);
+
+
+
 }
