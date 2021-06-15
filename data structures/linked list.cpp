@@ -222,6 +222,38 @@ int length(Node *head)
 	return length;
 }
 
+
+int center(Node **head) // center using iteration
+{
+	int length = 0;
+	Node *trav = *head;
+	while(trav)
+	{
+		trav = trav->next;
+		length++;
+	}
+
+	Node *node = *head;
+	for(int i=0; i<(length/2); i++)
+		node = node->next;
+
+	return node->data;
+}
+
+int center_( Node *head) // center using two pointers
+{
+	Node *slow = head;
+	Node *fast = head;
+
+	while(fast && fast->next)
+	{
+		fast = fast->next->next;
+		slow = slow->next;
+	}
+
+	return slow->data;
+}
+
 int main()
 {
 	Node *head = new Node(1);
@@ -243,7 +275,4 @@ int main()
 
     display(head);
     display(hhhh);
-
-
-
 }
