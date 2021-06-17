@@ -279,13 +279,78 @@ void print_reverse(Node *head)  //prints reverse of linked list
 	}
 }
 
+
+Node *merge(Node **x, Node **y) // merges two sorted linked lists
+{
+	Node *a = *x;
+	Node *b = *y;
+	if(a == NULL && b == NULL)
+		return NULL;
+
+	Node *start = new Node();
+
+	Node *headstart = start;
+
+	while(a && b)
+	{
+		if((a->data) <= (b->data))
+		{
+			cout<<"A"<<endl;
+			Node *nex = new Node(a->data);
+			start->next = nex;
+			a = a->next;
+		}else{
+			cout<<"B"<<endl;
+			Node *nex = new Node(b->data);
+			start->next = nex;
+			b = b->next;
+		}
+		start = start->next;
+	}
+
+	while(a)
+	{
+		cout<<"A"<<endl;
+		Node *nex = new Node(a->data);
+		start->next = nex;
+		start = start->next;
+		a = a->next;
+	}
+
+	while(b)
+	{
+		cout<<"B"<<endl;
+		Node *nex = new Node(b->data);
+		start->next = nex;
+		start = start->next;
+		b = b->next;
+	}
+
+	cout<<start->data<<endl;
+
+	delete_list(x);
+	delete_list(y);
+
+	return headstart->next;
+}
+
 int main()
 {
 	Node *head = new Node(1);
-	push_back(&head, 2);
-	push_back(&head, 3);
-	push_back(&head, 4);
 	push_back(&head, 5);
+	push_back(&head, 7);
+	push_back(&head, 9);
+	push_back(&head, 13);
+
+	Node *tail = new Node(2);
+	push_back(&tail, 3);
+	push_back(&tail, 6);
+	push_back(&tail, 8);
+	push_back(&tail, 10);
+
+	Node *node = merge(&head, &tail);
+
+	display(node);
 	display(head);
-	print_reverse(head);
+	display(tail);
 }
