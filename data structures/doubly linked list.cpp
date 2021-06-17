@@ -32,6 +32,15 @@ void display(Node *head)
 	}
 }
 
+void display_reverse(Node *tail)
+{
+	while(tail)
+	{
+		cout<<tail->data<<" ";
+		tail = tail->prev;
+	}
+}
+
 Node *push_back(Node **head, int data)
 {
 	if(*head == NULL)
@@ -61,6 +70,8 @@ int main()
 	push_back(&head, 3);
 	push_back(&head, 4);
 	Node *x = push_back(&head, 5);
+
+	display_reverse(x);
 
 	return 0;
 }
