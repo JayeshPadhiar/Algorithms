@@ -71,7 +71,6 @@ Node *push_front(Node **head, int data)
 
 	if(*head)
 	{
-		cout<<"Done"<<endl;
 		(*head)->prev = node;
 		node->next = *head;
 	}
