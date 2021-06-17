@@ -24,11 +24,13 @@ void display(Node *head)
 {
 	Node *node = head;
 
-	do{
-		cout<<node->data<<" ";
-		node = node->next;
-	}while(node != head);
-
+	if(head != NULL)
+	{
+		do{
+			cout<<node->data<<" ";
+			node = node->next;
+		}while(node != head);
+	}
 }
 
 void push(Node **head, int num)
