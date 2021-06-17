@@ -23,6 +23,14 @@ class Node
 		}
 };
 
+void display(Node *head)
+{
+	while(head)
+	{
+		cout<<head->data<<" ";
+		head = head->next;
+	}
+}
 
 Node *push_back(Node **head, int data)
 {
