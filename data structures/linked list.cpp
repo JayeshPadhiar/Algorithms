@@ -222,7 +222,6 @@ int length(Node *head)
 	return length;
 }
 
-
 int center(Node **head) // center using iteration
 {
 	int length = 0;
@@ -254,25 +253,30 @@ int center_( Node *head) // center using two pointers
 	return slow->data;
 }
 
+void reverse(Node **head)
+{
+	Node *current = *head;
+	Node *prev = NULL;
+	Node *next;
+
+	while(current != NULL)
+	{
+		next = current->next;
+		current->next = prev;
+
+		prev = current;
+		current = next;
+	}
+	*head = prev;
+}
+
 int main()
 {
 	Node *head = new Node(1);
 	push_back(&head, 2);
-    push_back(&head, 3);
-    push_back(&head, 4);
-    push_back(&head, 5);
+	push_back(&head, 3);
+	push_back(&head, 4);
+	push_back(&head, 5);
+	display(head);
 
-    Node *hhhh = new Node(5);
-	push_back(&hhhh, 6);
-    push_back(&hhhh, 7);
-    push_back(&hhhh, 8);
-    push_back(&hhhh, 9);
-
-    display(head);
-    display(hhhh);
-
-    swap_list(&head, &hhhh);
-
-    display(head);
-    display(hhhh);
 }
