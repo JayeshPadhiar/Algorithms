@@ -43,15 +43,17 @@ int search(Node *node, int num)
 	return -1;
 }
 
-void push_front(Node **head, int num) // double pointer because head is not global
+Node *push_front(Node **head, int num) // double pointer because head is not global
 {
 	Node *node = new Node(num);
 
 	node->next = *head;
 	*head = node;
+
+	return node;
 }
 
-void push_back(Node **head, int num)
+Node *push_back(Node **head, int num)
 {
 	Node *node = new Node(num);
 	Node *temp = *head;
@@ -59,7 +61,7 @@ void push_back(Node **head, int num)
 	if(temp == NULL)
 	{
 		*head = node;
-		return;
+		return *head;
 	}
 
 	while(temp->next)
@@ -67,9 +69,11 @@ void push_back(Node **head, int num)
 		temp = temp->next;
 	}
 	temp->next = node;
+
+	return node;
 }
 
-void push_after(Node *node, int num, int data)
+Node *push_after(Node *node, int num, int data)
 {
 	while(node)
 	{
@@ -78,29 +82,29 @@ void push_after(Node *node, int num, int data)
 			Node *new_node = new Node(data);
 			new_node->next = node->next;
 			node->next = new_node;
-			return;
+			return new_node;
 		}
 		node = node->next;
 	}
 	cout<<"Number not found\n";
+	return NULL;
 }
 
-void push_at(Node **head, int pos, int num)
+Node *push_at(Node **head, int pos, int num)
 {
 	if(pos == 0)
 	{
-		cout<<"first";
 		Node *new_node = new Node(num);
 		new_node->next = *head;
 		*head = new_node;
-		return;
+		return *head;
 	}
 
 	if(*head == NULL)
 	{
 		Node *new_node = new Node(num);
 		*head = new_node;
-		return;
+		return *head;
 	}
 
 	Node *iter = *head;
@@ -114,6 +118,8 @@ void push_at(Node **head, int pos, int num)
 
 	new_node->next = iter->next;
 	iter->next = new_node;
+
+	return new_node;
 
 }
 
@@ -340,13 +346,13 @@ int main()
 {
 	Node *head = new Node(1);
 	push_back(&head, 5);
-	push_back(&head, 7);
+	Node *b = push_back(&head, 7);
 	push_back(&head, 9);
-	push_back(&head, 13);
+	Node *c = push_at(&head, 3, 101);
+	Node *a = push_after(head, 155, 100);
 
-	Node *tail = new Node(2);
-	push_back(&tail, 3);
-
-	cout<<length_(head)<<endl;
+	display(a);
+	display(c);
+	display(head);
 
 }
