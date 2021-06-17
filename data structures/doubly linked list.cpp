@@ -80,17 +80,45 @@ Node *push_front(Node **head, int data)
 	return node;
 }
 
+Node *push_after(Node **head, int num, int data)
+{
+	Node *node = *head;
+
+	while(node)
+	{
+		if(node->data == num)
+		{
+			Node *new_node = new Node(data);
+			new_node->prev = node;
+			new_node->next = node->next;
+
+			if(node->next)
+				node->next->prev = new_node;
+
+			node->next = new_node;
+			return new_node;
+		}
+		node = node->next;
+	}
+	return NULL;
+}
+
 int main()
 {
-	Node *head = NULL;
-	//Node *n = push_front(&head, 2);
-	//Node *o = push_front(&head, 3);
-	push_back(&head, 5);
+	Node *head = new Node(1);
+	push_back(&head, 2);
+	push_back(&head, 3);
+	push_back(&head, 4);
+	Node *rev = push_back(&head, 5);
+
+	Node *n = push_after(&head, 1, 50);
 
 	display(head);
-	//display(n);
-	//display_reverse(o);
-	display_reverse(head);
+	display_reverse(rev);
+	display_reverse(n);
+
+	//display_reverse(r);
+
 
 	return 0;
 }
