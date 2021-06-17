@@ -20,6 +20,17 @@ class Node
 		}
 };
 
+void display(Node *head)
+{
+	Node *node = head;
+
+	do{
+		cout<<node->data<<" ";
+		node = node->next;
+	}while(node != head);
+
+}
+
 void push(Node **head, int num)
 {
 	Node *new_node = new Node(num);
@@ -54,6 +65,8 @@ int main()
 	push(&head, 4);
 	push(&head, 5);
 	push(&head, 6);
+
+	display(head);
 
 
 	return 0;
