@@ -222,6 +222,14 @@ int length(Node *head)
 	return length;
 }
 
+int length_(Node *node) // find length recursively
+{
+	if(node)
+		return length_(node->next) + 1;
+
+	return 0;
+}
+
 int center(Node **head) // center using iteration
 {
 	int length = 0;
@@ -279,11 +287,11 @@ void print_reverse(Node *head)  //prints reverse of linked list
 	}
 }
 
-
 Node *merge(Node **x, Node **y) // merges two sorted linked lists
 {
 	Node *a = *x;
 	Node *b = *y;
+
 	if(a == NULL && b == NULL)
 		return NULL;
 
@@ -295,12 +303,10 @@ Node *merge(Node **x, Node **y) // merges two sorted linked lists
 	{
 		if((a->data) <= (b->data))
 		{
-			cout<<"A"<<endl;
 			Node *nex = new Node(a->data);
 			start->next = nex;
 			a = a->next;
 		}else{
-			cout<<"B"<<endl;
 			Node *nex = new Node(b->data);
 			start->next = nex;
 			b = b->next;
@@ -310,7 +316,6 @@ Node *merge(Node **x, Node **y) // merges two sorted linked lists
 
 	while(a)
 	{
-		cout<<"A"<<endl;
 		Node *nex = new Node(a->data);
 		start->next = nex;
 		start = start->next;
@@ -319,14 +324,11 @@ Node *merge(Node **x, Node **y) // merges two sorted linked lists
 
 	while(b)
 	{
-		cout<<"B"<<endl;
 		Node *nex = new Node(b->data);
 		start->next = nex;
 		start = start->next;
 		b = b->next;
 	}
-
-	cout<<start->data<<endl;
 
 	delete_list(x);
 	delete_list(y);
@@ -344,13 +346,7 @@ int main()
 
 	Node *tail = new Node(2);
 	push_back(&tail, 3);
-	push_back(&tail, 6);
-	push_back(&tail, 8);
-	push_back(&tail, 10);
 
-	Node *node = merge(&head, &tail);
+	cout<<length_(head)<<endl;
 
-	display(node);
-	display(head);
-	display(tail);
 }
