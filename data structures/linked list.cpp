@@ -346,7 +346,6 @@ int main()
 {
 	Node *head = new Node(1);
 	push_back(&head, 5);
-	Node *b = push_back(&head, 7);
 	push_back(&head, 9);
 	Node *c = push_at(&head, 3, 101);
 	Node *a = push_after(head, 155, 100);

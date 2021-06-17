@@ -30,6 +30,7 @@ void display(Node *head)
 		cout<<head->data<<" ";
 		head = head->next;
 	}
+	cout<<endl;
 }
 
 void display_reverse(Node *tail)
@@ -39,6 +40,7 @@ void display_reverse(Node *tail)
 		cout<<tail->data<<" ";
 		tail = tail->prev;
 	}
+	cout<<endl;
 }
 
 Node *push_back(Node **head, int data)
@@ -47,10 +49,10 @@ Node *push_back(Node **head, int data)
 	{
 		Node *new_node = new Node(data);
 		*head = new_node;
+		return *head;
 	}
 
 	Node *node = *head;
-
 	while(node->next)
 	{
 		node = node->next;
@@ -63,15 +65,32 @@ Node *push_back(Node **head, int data)
 	return new_node;
 }
 
+Node *push_front(Node **head, int data)
+{
+	Node *node = new Node(data);
+
+	if(*head)
+	{
+		cout<<"Done"<<endl;
+		(*head)->prev = node;
+		node->next = *head;
+	}
+
+	*head = node;
+	return node;
+}
+
 int main()
 {
-	Node *head = new Node(1);
-	push_back(&head, 2);
-	push_back(&head, 3);
-	push_back(&head, 4);
-	Node *x = push_back(&head, 5);
+	Node *head = NULL;
+	//Node *n = push_front(&head, 2);
+	//Node *o = push_front(&head, 3);
+	push_back(&head, 5);
 
-	display_reverse(x);
+	display(head);
+	//display(n);
+	//display_reverse(o);
+	display_reverse(head);
 
 	return 0;
 }
