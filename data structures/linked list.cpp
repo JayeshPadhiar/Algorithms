@@ -270,6 +270,15 @@ void reverse(Node **head)
 	*head = prev;
 }
 
+void print_reverse(Node *head)  //prints reverse of linked list
+{
+	if(head != NULL)
+	{
+		print_reverse(head->next);
+		cout<<head->data<<" ";
+	}
+}
+
 int main()
 {
 	Node *head = new Node(1);
@@ -278,5 +287,5 @@ int main()
 	push_back(&head, 4);
 	push_back(&head, 5);
 	display(head);
-
+	print_reverse(head);
 }
