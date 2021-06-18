@@ -342,16 +342,42 @@ Node *merge(Node **x, Node **y) // merges two sorted linked lists
 	return headstart->next;
 }
 
+
+int pop(Node **head)
+{
+
+	if(*head == NULL)
+		return -1;
+
+	if((*head)->next == NULL)
+	{
+		int data = (*head)->data;
+		*head = NULL;
+		return data;
+	}
+
+	Node *node = *head;
+	while(node->next->next)
+		node = node->next;
+
+	Node *temp = node->next;
+	int data = temp->data;
+
+	node->next = NULL;
+
+	delete temp;
+	return data;
+}
+
+
 int main()
 {
 	Node *head = new Node(1);
-	push_back(&head, 5);
-	push_back(&head, 9);
-	Node *c = push_at(&head, 3, 101);
-	Node *a = push_after(head, 155, 100);
+	//push_back(&head, 5);
+	//push_back(&head, 9);
 
-	display(a);
-	display(c);
+	cout<<pop(&head);
+
+
 	display(head);
-
 }
