@@ -61,6 +61,18 @@ int pop(Node **head)
 	return data;
 }
 
+int peek(Node *head)
+{
+	if(head == NULL)
+	{
+		cout<<"Stack Empty\n";
+		return 0;
+	}
+
+	return head->data;
+}
+
+
 int main()
 {
 	Node *head = new Node(1);
