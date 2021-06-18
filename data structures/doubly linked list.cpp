@@ -128,6 +128,29 @@ int pop(Node **head)
 	return data;
 }
 
+int pop_front(Node **head)
+{
+	if(*head == NULL)
+	{
+		cout<<"No element"<<endl;
+		return -1;
+	}
+
+	if((*head)->next == NULL)
+	{
+		int data = (*head)->data;
+		*head = NULL;
+		return data;
+	}
+
+	Node *temp = *head;
+	int data = (*head)->data;
+
+	(*head) = (*head)->next;
+	delete temp;
+
+	return data;
+}
 
 int main()
 {
@@ -137,6 +160,12 @@ int main()
 	push_back(&head, 4);
 
 	display(head);
+
+	cout<<pop_front(&head)<<endl;
+	cout<<pop_front(&head)<<endl;
+	cout<<pop_front(&head)<<endl;
+	cout<<pop_front(&head)<<endl;
+	cout<<pop_front(&head)<<endl;
 
 	display(head);
 
