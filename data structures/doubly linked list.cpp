@@ -152,6 +152,43 @@ int pop_front(Node **head)
 	return data;
 }
 
+void remove(Node **head, int num)
+{
+	if(*head == NULL)
+		return;
+
+
+	Node *node = *head;
+	while(node)
+	{
+		if(node->data == num)
+		{
+			if(node == *head)
+			{
+				cout<<"asdasd"<<endl;
+				*head = (*head)->next;
+				return;
+			}
+
+			if(node->prev != NULL)
+			{
+				node->prev->next = node->next;
+			}
+
+			if(node->next != NULL)
+			{
+				node->next->prev = node->prev;
+			}
+
+			delete node;
+			return;
+		}
+
+		node = node->next;
+	}
+
+}
+
 int main()
 {
 	Node *head = new Node(1);
@@ -161,11 +198,7 @@ int main()
 
 	display(head);
 
-	cout<<pop_front(&head)<<endl;
-	cout<<pop_front(&head)<<endl;
-	cout<<pop_front(&head)<<endl;
-	cout<<pop_front(&head)<<endl;
-	cout<<pop_front(&head)<<endl;
+	remove(&head, 1);
 
 	display(head);
 
