@@ -29,6 +29,14 @@ Node *push(Node **head, int num)
 	return *head;
 }
 
+bool isempty(Node *head)
+{
+	if(head)
+		return false;
+
+	return true;
+}
+
 void display(Node *head)
 {
 	if(!head)
@@ -79,9 +87,6 @@ int main()
 	push(&head, 2);
 	push(&head, 3);
 	push(&head, 4);
-	push(&head, 5);
-	push(&head, 6);
-	push(&head, 7);
 
 	return 0;
 }
