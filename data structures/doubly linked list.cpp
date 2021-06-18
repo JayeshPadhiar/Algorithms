@@ -186,24 +186,37 @@ void remove(Node **head, int num)
 
 		node = node->next;
 	}
-
 }
+
+void reverse(Node **head)
+{
+	Node *prev = NULL;
+	Node *curr = *head;
+
+	while(curr)
+	{
+		curr->prev = curr->next;
+		curr->next = prev;
+
+		prev = curr;
+		curr = curr->prev;
+	}
+
+	*head = prev;
+}
+
+
 
 int main()
 {
-	Node *head = new Node(1);
+	Node *head = NULL;
 	push_back(&head, 2);
 	push_back(&head, 3);
 	push_back(&head, 4);
 
-	display(head);
-
-	remove(&head, 1);
+	reverse(&head);
 
 	display(head);
-
-
-
 
 	return 0;
 }
