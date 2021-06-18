@@ -29,6 +29,20 @@ Node *push(Node **head, int num)
 	return *head;
 }
 
+void display(Node *head)
+{
+	if(!head)
+	{
+		cout<<"Stack Empty\n";
+		return;
+	}
+
+	while(head)
+	{
+		cout<<head->data<<endl;
+		head = head->next;
+	}
+}
 
 int main()
 {
