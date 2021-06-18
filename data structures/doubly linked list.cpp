@@ -205,8 +205,6 @@ void reverse(Node **head)
 	*head = prev;
 }
 
-
-
 int main()
 {
 	Node *head = NULL;
