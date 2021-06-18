@@ -44,6 +44,23 @@ void display(Node *head)
 	}
 }
 
+int pop(Node **head)
+{
+	if((*head) == NULL)
+	{
+		cout<<"Stack Empty\n";
+		return 0;
+	}
+
+	int data = (*head)->data;
+	Node *temp = *head;
+
+	*head = (*head)->next;
+	delete temp;
+
+	return data;
+}
+
 int main()
 {
 	Node *head = new Node(1);
