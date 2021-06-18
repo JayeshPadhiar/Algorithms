@@ -102,21 +102,45 @@ Node *push_after(Node **head, int num, int data)
 	return NULL;
 }
 
+int pop(Node **head)
+{
+	if(*head == NULL)
+	{
+		cout<<"No element "<<endl;
+		return -1;
+	}
+
+	if((*head)->next == NULL)
+	{
+		int data = (*head)->data;
+		*head = NULL;
+		return data;
+	}
+
+	Node *node = *head;
+	while(node->next)
+	{
+		node = node->next;
+	}
+	int data = node->data;
+	node->prev->next = NULL;
+	delete node;
+	return data;
+}
+
+
 int main()
 {
 	Node *head = new Node(1);
 	push_back(&head, 2);
 	push_back(&head, 3);
 	push_back(&head, 4);
-	Node *rev = push_back(&head, 5);
-
-	Node *n = push_after(&head, 1, 50);
 
 	display(head);
-	display_reverse(rev);
-	display_reverse(n);
 
-	//display_reverse(r);
+	display(head);
+
+
 
 
 	return 0;
