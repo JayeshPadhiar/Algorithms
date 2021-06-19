@@ -80,13 +80,25 @@ int peek(Node *head)
 	return head->data;
 }
 
+int size(Node *head)
+{
+	int size = 0;
+	while(head)
+	{
+		size++;
+		head = head->next;
+	}
+
+	return size;
+}
 
 int main()
 {
 	Node *head = new Node(1);
 	push(&head, 2);
 	push(&head, 3);
-	push(&head, 4);
+
+	cout<<size(head)<<endl;
 
 	return 0;
 }
